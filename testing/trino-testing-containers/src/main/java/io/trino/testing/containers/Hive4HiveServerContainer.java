@@ -136,7 +136,7 @@ public class Hive4HiveServerContainer
         withEnv("IS_RESUME", "true");
         // Default S3 credentials for MinIO
         withEnv("AWS_ACCESS_KEY_ID", Minio.MINIO_ROOT_USER);
-        withEnv("AWS_SECRET_KEY", Minio.MINIO_ROOT_PASSWORD);
+        withEnv("AWS_SECRET_ACCESS_KEY", Minio.MINIO_ROOT_PASSWORD);
         // Default S3 configuration pointing to MinIO
         withCopyToContainer(
                 Transferable.of(getHiveSiteXml(
@@ -197,7 +197,7 @@ public class Hive4HiveServerContainer
     public Hive4HiveServerContainer withS3Config(String accessKey, String secretKey, String s3Host, int s3Port)
     {
         withEnv("AWS_ACCESS_KEY_ID", accessKey);
-        withEnv("AWS_SECRET_KEY", secretKey);
+        withEnv("AWS_SECRET_ACCESS_KEY", secretKey);
         withCopyToContainer(
                 Transferable.of(getHiveSiteXml(warehouseDir, accessKey, secretKey, s3Host, s3Port)),
                 "/opt/hive/conf/hive-site.xml");
